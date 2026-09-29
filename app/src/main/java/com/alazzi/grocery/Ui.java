@@ -51,4 +51,5 @@ public final class Ui {
     public static String number(double n){if(Math.abs(n)<0.0000001)return "0";DecimalFormat f=new DecimalFormat("#,##0.###",DecimalFormatSymbols(Locale.US));return f.format(n);}
     public static double num(String s){try{return Double.parseDouble(s.replace(",","").trim());}catch(Exception e){return 0;}}
     public static String now(){return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.US).format(new Date());}
+    public static String formatDate(String s){try{return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.US).parse(s)==null?s:new SimpleDateFormat("yyyy/MM/dd HH:mm",Locale.US).format(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.US).parse(s));}catch(Exception e){return s;}}
 }
