@@ -38,7 +38,7 @@ public class MainActivity extends androidx.appcompat.app.AppCompatActivity {
         Intent i;
         if(m.equals("الفواتير"))i=new Intent(this,InvoiceActivity.class);
         else if(m.equals("الحسابات"))i=new Intent(this,AccountsActivity.class);
-        else if(m.equals("الأصناف")||m.equals("المخزون"))i=new Intent(this,ProductsActivity.class);
+        else if(m.equals("الأصناف"))i=new Intent(this,ProductsActivity.class); else if(m.equals("المخزون"))i=new Intent(this,WarehouseActivity.class);
         else if(m.equals("الحوالات"))i=new Intent(this,TransferActivity.class);
         else if(m.equals("التقارير"))i=new Intent(this,ReportsActivity.class);
         else if(m.equals("الملاحظات"))i=new Intent(this,NotesActivity.class);
