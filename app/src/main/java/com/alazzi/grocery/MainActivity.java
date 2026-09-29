@@ -44,7 +44,7 @@ public class MainActivity extends androidx.appcompat.app.AppCompatActivity {
         else if(m.equals("الملاحظات"))i=new Intent(this,NotesActivity.class);
         else if(m.equals("النسخ الاحتياطي"))i=new Intent(this,BackupActivity.class);
         else if(m.equals("الإعدادات"))i=new Intent(this,SettingsActivity.class);
-        else i=new Intent(this,ScreenActivity.class).putExtra("screen",m);
+        else i=new Intent(this,ScreenActivity.class).putExtra("screen",m.equals("أخرى")?"__all__":m);
         startActivity(i);
     }
     private void quickAdd(){
