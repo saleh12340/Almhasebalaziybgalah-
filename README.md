@@ -29,3 +29,6 @@
 
 ## الحالة
 مرحلة 01: تأسيس المشروع وربط جميع وحدات المجال الرئيسية.
+
+
+Build checkpoint: Android native Java, RTL, local SQLite, thermal receipt Bitmap/ESC-POS, backup and full module routing.
