@@ -58,7 +58,9 @@ public final class SharePrint {
         try{Uri u=FileProvider.getUriForFile(c,c.getString(com.alazzi.grocery.R.string.share_authority),f);Intent i=new Intent(Intent.ACTION_SEND);i.setPackage(pkg);i.setType(type);i.putExtra(Intent.EXTRA_STREAM,u);i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);c.startActivity(i);}catch(Exception e){shareFile(c,f,type);}
     }
     private static File saveBitmap(Context c,Bitmap b,String name){File f=new File(c.getCacheDir(),name);try(FileOutputStream out=new FileOutputStream(f)){b.compress(Bitmap.CompressFormat.PNG,100,out);out.flush();}catch(Exception ignored){}return f;}
-    public static File backupFile(Context c){try{File src=c.getDatabasePath("alazzi_grocery.db");File f=new File(c.getCacheDir(),"alazzi_grocery_backup.db");try(FileInputStream in=new FileInputStream(src);FileOutputStream out=new FileOutputStream(f)){byte[] buf=new byte[8192];int n;while((n=in.read(buf))>0)out.write(buf,0,n);}return f;}catch(Exception e){throw new RuntimeException(e);}}
+    public static void copyDb(Context c,File dest){try{File src=c.getDatabasePath("alazzi_grocery.db");try(FileInputStream in=new FileInputStream(src);FileOutputStream out=new FileOutputStream(dest)){byte[] b=new byte[8192];int n;while((n=in.read(b))>0)out.write(b,0,n);}}catch(Exception e){throw new RuntimeException(e);}}
+    public static File backupFile(Context c){File f=new File(c.getCacheDir(),"alazzi_grocery_backup.db");copyDb(c,f);return f;}
+    public static void printTest(Context c){Map<String,Object> d=new HashMap<>();d.put("business","بقالة العزي للمواد الغذائية");d.put("type","اختبار الطباعة");d.put("number","TEST");d.put("party","طباعة 58mm / 80mm");d.put("total",0);d.put("paid",0);d.put("remaining",0);printSavedOrChoose(c,receipt(c,d));}
 
     public static void printSavedOrChoose(Context c,Bitmap b){
         if(Build.VERSION.SDK_INT>=31 && c.checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT)!=PackageManager.PERMISSION_GRANTED){
@@ -67,7 +69,7 @@ public final class SharePrint {
         BluetoothAdapter a=BluetoothAdapter.getDefaultAdapter();
         if(a==null){new AlertDialog.Builder(c).setMessage("Bluetooth غير متاح").setPositiveButton("حسنًا",null).show();return;}
         Set<BluetoothDevice> dev=a.getBondedDevices();if(dev.isEmpty()){new AlertDialog.Builder(c).setMessage("لا توجد طابعة مقترنة").setPositiveButton("حسنًا",null).show();return;}
-        String pref=AppDatabase.get(c).getReadableDatabase().rawQuery("SELECT value FROM settings WHERE key='printer_address'",null).use(x->{return x.moveToFirst()?x.getString(0):"";});
+        String pref=android.database.Cursor pc=AppDatabase.get(c).getReadableDatabase().rawQuery("SELECT value FROM settings WHERE key='printer_address'",null);String pref;try{pref=pc.moveToFirst()?pc.getString(0):"";}finally{pc.close();}
         BluetoothDevice chosen=null;for(BluetoothDevice d:dev)if(d.getAddress().equals(pref))chosen=d;
         if(chosen!=null){doBt(c,chosen,b);return;}
         String[] names=new String[dev.size()];BluetoothDevice[] arr=dev.toArray(new BluetoothDevice[0]);for(int i=0;i<arr.length;i++)names[i]=(arr[i].getName()==null?"طابعة":arr[i].getName())+"\n"+arr[i].getAddress();
