@@ -34,7 +34,7 @@ public final class Repository {
         ContentValues v=new ContentValues();v.put("name",name.trim());v.put("barcode",barcode==null?null:barcode.trim());v.put("unit",unit==null||unit.trim().isEmpty()?"حبة":unit.trim());v.put("buy_price",buy);v.put("sell_price",sell);v.put("stock",stock);v.put("warehouse_id",warehouse);v.put("created_at",Ui.now());
         long id=db.getWritableDatabase().insertOrThrow("products",null,v);
         db.getWritableDatabase().insertOrThrow("product_prices",null,AppDatabase.values("product_id",String.valueOf(id),"price_type","شراء","price",String.valueOf(buy)));
-        db.getWritableDatabase().insertOrThrow("product_prices",AppDatabase.values("product_id",String.valueOf(id),"price_type","بيع","price",String.valueOf(sell)));
+        db.getWritableDatabase().insertOrThrow("product_prices",null,AppDatabase.values("product_id",String.valueOf(id),"price_type","بيع","price",String.valueOf(sell)));
         return id;
     }
     public List<Map<String,Object>> parties(String table,String q){
