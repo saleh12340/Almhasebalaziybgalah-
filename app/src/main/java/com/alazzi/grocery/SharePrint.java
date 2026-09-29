@@ -69,7 +69,7 @@ public final class SharePrint {
         BluetoothAdapter a=BluetoothAdapter.getDefaultAdapter();
         if(a==null){new AlertDialog.Builder(c).setMessage("Bluetooth غير متاح").setPositiveButton("حسنًا",null).show();return;}
         Set<BluetoothDevice> dev=a.getBondedDevices();if(dev.isEmpty()){new AlertDialog.Builder(c).setMessage("لا توجد طابعة مقترنة").setPositiveButton("حسنًا",null).show();return;}
-        String pref=android.database.Cursor pc=AppDatabase.get(c).getReadableDatabase().rawQuery("SELECT value FROM settings WHERE key='printer_address'",null);String pref;try{pref=pc.moveToFirst()?pc.getString(0):"";}finally{pc.close();}
+        android.database.Cursor pc=AppDatabase.get(c).getReadableDatabase().rawQuery("SELECT value FROM settings WHERE key='printer_address'",null);String pref;try{pref=pc.moveToFirst()?pc.getString(0):"";}finally{pc.close();}
         BluetoothDevice chosen=null;for(BluetoothDevice d:dev)if(d.getAddress().equals(pref))chosen=d;
         if(chosen!=null){doBt(c,chosen,b);return;}
         String[] names=new String[dev.size()];BluetoothDevice[] arr=dev.toArray(new BluetoothDevice[0]);for(int i=0;i<arr.length;i++)names[i]=(arr[i].getName()==null?"طابعة":arr[i].getName())+"\n"+arr[i].getAddress();
