@@ -40,16 +40,13 @@ public final class Ui {
         if(back!=null){TextView x=text(c,"‹",36,false,WHITE);x.setGravity(Gravity.CENTER);bar.addView(x,new LinearLayout.LayoutParams(dp(bar,45),-1));x.setOnClickListener(back);}
         return bar;
     }
-    private static TextView titleViewHolder(LinearLayout bar){
-        TextView t=new TextView(bar.getContext());t.setVisibility(View.GONE);return t;
-    }
     public static LinearLayout card(android.content.Context c){
         LinearLayout l=row(c);l.setOrientation(LinearLayout.VERTICAL);l.setPadding(dp(l,14),dp(l,10),dp(l,14),dp(l,10));l.setBackground(round(WHITE,16,0xffdfe4ec));return l;
     }
     public static LinearLayout row(android.content.Context c){LinearLayout l=new LinearLayout(c);l.setGravity(Gravity.CENTER_VERTICAL);l.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);l.setPadding(dp(l,6),dp(l,4),dp(l,6),dp(l,4));return l;}
     public static Space spacer(android.content.Context c,int dp){Space s=new Space(c);s.setLayoutParams(new LinearLayout.LayoutParams(1,(int)(dp*c.getResources().getDisplayMetrics().density)));return s;}
     public static GradientDrawable round(int fill,int radius,int stroke){GradientDrawable d=new GradientDrawable();d.setColor(fill);d.setCornerRadius(radius);if(stroke!=0)d.setStroke(1,stroke);return d;}
-    public static String number(double n){if(Math.abs(n)<0.0000001)return "0";DecimalFormat f=new DecimalFormat("#,##0.###",DecimalFormatSymbols(Locale.US));return f.format(n);}
+    public static String number(double n){if(Math.abs(n)<0.0000001)return "0";DecimalFormat f=new DecimalFormat("#,##0.###",new DecimalFormatSymbols(Locale.US));return f.format(n);}
     public static double num(String s){try{return Double.parseDouble(s.replace(",","").trim());}catch(Exception e){return 0;}}
     public static String now(){return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.US).format(new Date());}
     public static String formatDate(String s){try{return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.US).parse(s)==null?s:new SimpleDateFormat("yyyy/MM/dd HH:mm",Locale.US).format(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.US).parse(s));}catch(Exception e){return s;}}
