@@ -32,7 +32,7 @@ public final class Ui {
         Button b=new Button(c);b.setText(label);b.setTextSize(15);b.setTextColor(WHITE);b.setAllCaps(false);b.setGravity(Gravity.CENTER);b.setOnClickListener(l);
         b.setBackground(round(BLUE,14,0));b.setPadding(dp(b,8),0,dp(b,8),0);return b;
     }
-    public static TextView titleBar(android.content.Context c,String title,View.OnClickListener back,View.OnClickListener menu){
+    public static View titleBar(android.content.Context c,String title,View.OnClickListener back,View.OnClickListener menu){
         LinearLayout bar=new LinearLayout(c);bar.setOrientation(LinearLayout.HORIZONTAL);bar.setGravity(Gravity.CENTER_VERTICAL);bar.setBackgroundColor(DARK);bar.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);bar.setPadding(dp(bar,8),0,dp(bar,8),0);
         if(menu!=null){TextView m=text(c,"⋮",28,true,WHITE);m.setGravity(Gravity.CENTER);bar.addView(m,new LinearLayout.LayoutParams(dp(bar,45),-1));m.setOnClickListener(menu);}
         TextView tt=text(c,title,19,true,WHITE);tt.setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);bar.addView(tt,new LinearLayout.LayoutParams(0,-1,1));
