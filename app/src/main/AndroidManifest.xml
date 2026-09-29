@@ -7,11 +7,19 @@
     <application android:theme="@style/AppTheme" android:label="بقالة العزي للمواد الغذائية" android:allowBackup="true" android:supportsRtl="true">
         <activity android:name=".SettingsActivity"/>
         <activity android:name=".ModuleActivity"/>
+        <activity android:name=".ProductsActivity"/>
+        <activity android:name=".ReportsActivity"/>
+        <activity android:name=".TransferActivity"/>
+        <activity android:name=".NotesActivity"/>
+        <activity android:name=".BackupActivity"/>
+        <activity android:name=".ScreenActivity"/>
+        <activity android:name=".InvoiceActivity"/>
+        <activity android:name=".AccountsActivity"/>
         <activity android:name=".MainActivity" android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
         </activity>
+        <provider android:name="androidx.core.content.FileProvider" android:authorities="@string/share_authority" android:exported="false" android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+        </provider>
     </application>
 </manifest>
