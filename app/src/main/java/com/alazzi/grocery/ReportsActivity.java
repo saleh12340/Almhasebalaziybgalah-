@@ -3,6 +3,7 @@ package com.alazzi.grocery;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Gravity;
 import android.widget.*;
 import java.util.*;
 
