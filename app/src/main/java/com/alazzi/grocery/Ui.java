@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -37,7 +38,7 @@ public final class Ui {
         if(menu!=null){TextView m=text(c,"⋮",28,true,WHITE);m.setGravity(Gravity.CENTER);bar.addView(m,new LinearLayout.LayoutParams(dp(bar,45),-1));m.setOnClickListener(menu);}
         TextView tt=text(c,title,19,true,WHITE);tt.setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);bar.addView(tt,new LinearLayout.LayoutParams(0,-1,1));
         if(back!=null){TextView x=text(c,"‹",36,false,WHITE);x.setGravity(Gravity.CENTER);bar.addView(x,new LinearLayout.LayoutParams(dp(bar,45),-1));x.setOnClickListener(back);}
-        return bar instanceof TextView ? (TextView)bar : titleViewHolder(bar);
+        return bar;
     }
     private static TextView titleViewHolder(LinearLayout bar){
         TextView t=new TextView(bar.getContext());t.setVisibility(View.GONE);return t;
