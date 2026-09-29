@@ -32,3 +32,6 @@
 
 
 Build checkpoint: Android native Java, RTL, local SQLite, thermal receipt Bitmap/ESC-POS, backup and full module routing.
+
+
+Implementation checkpoint: warehouse/transfer/inventory and messaging/WhatsApp screens are now wired to the native database.
