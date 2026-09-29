@@ -20,7 +20,7 @@
         <activity android:name=".NotesActivity"/>
         <activity android:name=".BackupActivity"/>
         <activity android:name=".ScreenActivity"/>
-        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".SettingsActivity"/><activity android:name=".WarehouseActivity"/><activity android:name=".MessagesActivity"/>
         <activity android:name=".ModuleActivity"/>
         <activity android:name=".ProductsActivity"/>
         <activity android:name=".ReportsActivity"/>
