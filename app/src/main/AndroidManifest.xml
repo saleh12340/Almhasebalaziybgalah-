@@ -5,6 +5,21 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
     <application android:name=".App" android:theme="@style/AppTheme" android:label="بقالة العزي للمواد الغذائية" android:allowBackup="true" android:supportsRtl="true">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="@string/share_authority"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+        </provider>
+        <activity android:name=".ProductsActivity"/>
+        <activity android:name=".AccountsActivity"/>
+        <activity android:name=".InvoiceActivity"/>
+        <activity android:name=".ReportsActivity"/>
+        <activity android:name=".TransferActivity"/>
+        <activity android:name=".NotesActivity"/>
+        <activity android:name=".BackupActivity"/>
+        <activity android:name=".ScreenActivity"/>
         <activity android:name=".SettingsActivity"/>
         <activity android:name=".ModuleActivity"/>
         <activity android:name=".ProductsActivity"/>
